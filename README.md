@@ -1,178 +1,123 @@
 # Custom UI CLI
 
-A CLI tool for installing and managing custom UI components, similar to shadcn/ui. Build beautiful, accessible React components with TypeScript and Tailwind CSS.
+A powerful CLI tool for installing and managing custom UI components in React projects.
 
 ## Features
 
-- 🎨 **Beautiful Components**: Pre-built, customizable UI components
-- 🔧 **TypeScript First**: Full TypeScript support with proper type definitions
-- 🎯 **Tailwind CSS**: Styled with Tailwind CSS for easy customization
-- ♿ **Accessible**: Built on Radix UI primitives for accessibility
-- 📦 **Copy & Paste**: Components are copied to your project, not imported as dependencies
-- 🚀 **Framework Agnostic**: Works with Next.js, Vite, Create React App, and more
+- 🚀 **Easy Installation**: Initialize custom-ui in any React project
+- 📦 **Component Management**: Add, list, and manage UI components
+- 🎨 **Multiple Frameworks**: Support for Tailwind CSS, CSS Modules, and Styled Components
+- 🔧 **Project Detection**: Automatically detects Next.js, Vite, CRA, and generic React projects
+- 📚 **Documentation**: Built-in component documentation
+- ✅ **TypeScript Support**: Full TypeScript support with proper type definitions
 
 ## Installation
 
+### Global Installation
 ```bash
-npx @custom-ui/cli@latest init
+npm install -g @custom-ui/cli
 ```
 
-## Usage
-
-### Initialize your project
-
+### Use with npx (Recommended)
 ```bash
 npx @custom-ui/cli init
 ```
 
-This will:
-- Detect your project type (Next.js, Vite, etc.)
-- Create the necessary folder structure
-- Install required dependencies (Tailwind CSS, etc.)
-- Set up configuration files
+## Quick Start
 
-### Add components
+1. **Initialize in your project:**
+   ```bash
+   npx @custom-ui/cli init
+   ```
+
+2. **Add components:**
+   ```bash
+   npx @custom-ui/cli add button
+   npx @custom-ui/cli add dialog
+   ```
+
+3. **List available components:**
+   ```bash
+   npx @custom-ui/cli list
+   ```
+
+4. **View component documentation:**
+   ```bash
+   npx @custom-ui/cli docs button
+   ```
+
+## Commands
+
+### `init`
+Initialize custom-ui in your project.
 
 ```bash
-# Add a single component
+npx @custom-ui/cli init [options]
+```
+
+**Options:**
+- `-f, --force` - Overwrite existing configuration
+- `--skip-deps` - Skip dependency installation
+- `--components-dir <dir>` - Custom components directory
+- `--utils-dir <dir>` - Custom utils directory
+
+### `add`
+Add components to your project.
+
+```bash
+npx @custom-ui/cli add [components...]
+```
+
+**Examples:**
+```bash
 npx @custom-ui/cli add button
-
-# Add multiple components
-npx @custom-ui/cli add button input card
+npx @custom-ui/cli add button dialog alert
+npx @custom-ui/cli add --all
 ```
 
-### List available components
+### `list`
+List all available components.
 
 ```bash
-npx @custom-ui/cli list
+npx @custom-ui/cli list [options]
 ```
 
-### View component documentation
+**Options:**
+- `--installed` - Show only installed components
+- `--available` - Show only available components
+
+### `docs`
+Show documentation for a component.
 
 ```bash
-npx @custom-ui/cli docs button
+npx @custom-ui/cli docs <component>
 ```
+
+## Supported Frameworks
+
+- **Next.js** (App Router & Pages Router)
+- **Vite**
+- **Create React App**
+- **Generic React Projects**
+
+## Supported CSS Frameworks
+
+- **Tailwind CSS** (Recommended)
+- **CSS Modules**
+- **Styled Components**
 
 ## Available Components
 
-| Component | Description |
-|-----------|-------------|
-| `button` | Customizable button with variants and sizes |
-| `input` | Input field with proper TypeScript props |
-| `card` | Flexible card with header, content, and footer |
-| `dialog` | Modal dialog with overlay and content |
-| `badge` | Badge component for status and labels |
-| `alert` | Alert component for important messages |
-| `separator` | Separator for layout divisions |
-
-## Component Examples
-
-### Button
-
-```tsx
-import { Button } from "@/components/ui/button"
-
-export function ButtonDemo() {
-  return (
-    <div className="flex gap-2">
-      <Button>Default</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
-    </div>
-  )
-}
-```
-
-### Card
-
-```tsx
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-
-export function CardDemo() {
-  return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Get started by creating a new project.</p>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
-      </CardFooter>
-    </Card>
-  )
-}
-```
-
-### Dialog
-
-```tsx
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-
-export function DialogDemo() {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
-}
-```
-
-## Project Structure
-
-After running `init`, your project will have the following structure:
-
-```
-your-project/
-├── components/
-│   └── ui/
-│       ├── button.tsx
-│       ├── input.tsx
-│       └── ...
-├── lib/
-│   └── utils.ts
-└── ...
-```
+- **Alert** - Flexible alert component with variants
+- **Badge** - Small status indicators
+- **Button** - Customizable button component
+- **Dialog** - Modal dialog with accessibility features
+- **Separator** - Visual divider component
+- And more...
 
 ## Configuration
 
-The CLI creates a configuration file at `.custom-ui/config.json`:
+The CLI creates a `custom-ui.json` configuration file in your project root:
 
 ```json
 {
@@ -184,62 +129,53 @@ The CLI creates a configuration file at `.custom-ui/config.json`:
 }
 ```
 
-## Dependencies
+## Development
 
-Components may require the following dependencies:
+### Prerequisites
+- Node.js >= 16.0.0
+- npm or yarn
 
-- `@radix-ui/react-*` - Accessible component primitives
-- `class-variance-authority` - For component variants
-- `clsx` - Conditional class names
-- `tailwind-merge` - Merge Tailwind classes
-- `lucide-react` - Icons
-
-These are automatically installed when you add components that require them.
-
-## Customization
-
-Since components are copied to your project, you have full control over them:
-
-1. **Styling**: Modify the Tailwind classes directly in the component files
-2. **Behavior**: Add or modify component logic as needed
-3. **Props**: Extend component interfaces with additional props
-4. **Variants**: Add new variants using `class-variance-authority`
-
-## TypeScript Support
-
-All components are written in TypeScript with proper type definitions:
-
-```tsx
-interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-}
+### Setup
+```bash
+git clone https://github.com/Kwameeh/custom-ui-cli.git
+cd custom-ui-cli
+npm install
+npm run build
 ```
 
-## Framework Support
+### Testing
+```bash
+npm test
+npm run test:watch
+npm run test:integration
+```
 
-The CLI supports the following frameworks:
-
-- **Next.js** - Automatic detection and configuration
-- **Vite** - React + TypeScript projects
-- **Create React App** - Standard CRA projects
-- **Generic React** - Any React project with TypeScript
+### Building
+```bash
+npm run build
+```
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- 📖 [Documentation](https://github.com/custom-ui/cli#readme)
-- 🐛 [Issues](https://github.com/custom-ui/cli/issues)
-- 💬 [Discussions](https://github.com/custom-ui/cli/discussions)
+- 📖 [Documentation](https://github.com/Kwameeh/custom-ui-cli#readme)
+- 🐛 [Report Issues](https://github.com/Kwameeh/custom-ui-cli/issues)
+- 💬 [Discussions](https://github.com/Kwameeh/custom-ui-cli/discussions)
 
----
+## Acknowledgments
 
-Built with ❤️ by the Custom UI team.
+- Built with [Commander.js](https://github.com/tj/commander.js/)
+- UI components powered by [Radix UI](https://www.radix-ui.com/)
+- Styling with [Tailwind CSS](https://tailwindcss.com/)
+- Testing with [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/)
