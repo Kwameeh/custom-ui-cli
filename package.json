@@ -1,5 +1,5 @@
 {
-  "name": "@custom-ui/cli",
+  "name": "@kwameeh_1/custom-ui-cli",
   "version": "1.0.0",
   "description": "A CLI tool for installing and managing custom UI components",
   "main": "dist/index.js",

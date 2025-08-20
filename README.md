@@ -15,35 +15,35 @@ A powerful CLI tool for installing and managing custom UI components in React pr
 
 ### Global Installation
 ```bash
-npm install -g @custom-ui/cli
+npm install -g @kwameeh_1/custom-ui-cli
 ```
 
 ### Use with npx (Recommended)
 ```bash
-npx @custom-ui/cli init
+npx @kwameeh_1/custom-ui-cli init
 ```
 
 ## Quick Start
 
 1. **Initialize in your project:**
    ```bash
-   npx @custom-ui/cli init
+   npx @kwameeh_1/custom-ui-cli init
    ```
 
 2. **Add components:**
    ```bash
-   npx @custom-ui/cli add button
-   npx @custom-ui/cli add dialog
+   npx @kwameeh_1/custom-ui-cli add button
+   npx @kwameeh_1/custom-ui-cli add dialog
    ```
 
 3. **List available components:**
    ```bash
-   npx @custom-ui/cli list
+   npx @kwameeh_1/custom-ui-cli list
    ```
 
 4. **View component documentation:**
    ```bash
-   npx @custom-ui/cli docs button
+   npx @kwameeh_1/custom-ui-cli docs button
    ```
 
 ## Commands
@@ -52,7 +52,7 @@ npx @custom-ui/cli init
 Initialize custom-ui in your project.
 
 ```bash
-npx @custom-ui/cli init [options]
+npx @kwameeh_1/custom-ui-cli init [options]
 ```
 
 **Options:**
@@ -65,21 +65,21 @@ npx @custom-ui/cli init [options]
 Add components to your project.
 
 ```bash
-npx @custom-ui/cli add [components...]
+npx @kwameeh_1/custom-ui-cli add [components...]
 ```
 
 **Examples:**
 ```bash
-npx @custom-ui/cli add button
-npx @custom-ui/cli add button dialog alert
-npx @custom-ui/cli add --all
+npx @kwameeh_1/custom-ui-cli add button
+npx @kwameeh_1/custom-ui-cli add button dialog alert
+npx @kwameeh_1/custom-ui-cli add --all
 ```
 
 ### `list`
 List all available components.
 
 ```bash
-npx @custom-ui/cli list [options]
+npx @kwameeh_1/custom-ui-cli list [options]
 ```
 
 **Options:**
@@ -90,7 +90,7 @@ npx @custom-ui/cli list [options]
 Show documentation for a component.
 
 ```bash
-npx @custom-ui/cli docs <component>
+npx @kwameeh_1/custom-ui-cli docs <component>
 ```
 
 ## Supported Frameworks
