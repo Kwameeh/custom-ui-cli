@@ -1,0 +1,227 @@
+{
+  "components": {
+    "button": {
+      "metadata": {
+        "name": "Button",
+        "description": "A customizable button component with variants",
+        "dependencies": [],
+        "files": [
+          {
+            "path": "components/ui/button.tsx",
+            "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"../../lib/utils\";\n\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground hover:bg-primary/90\",\n        destructive: \"bg-destructive text-destructive-foreground hover:bg-destructive/90\",\n        outline: \"border border-input bg-background hover:bg-accent hover:text-accent-foreground\",\n        secondary: \"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n        ghost: \"hover:bg-accent hover:text-accent-foreground\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n      },\n      size: {\n        default: \"h-10 px-4 py-2\",\n        sm: \"h-9 rounded-md px-3\",\n        lg: \"h-11 rounded-md px-8\",\n        icon: \"h-10 w-10\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n);\n\nexport interface ButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {\n  asChild?: boolean;\n}\n\nconst Button = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  ({ className, variant, size, asChild = false, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"button\";\n    return (\n      <Comp\n        className={cn(buttonVariants({ variant, size, className }))}\n        ref={ref}\n        {...props}\n      />\n    );\n  }\n);\nButton.displayName = \"Button\";\n\nexport { Button, buttonVariants };",
+            "type": "component"
+          }
+        ],
+        "npmDependencies": ["@radix-ui/react-slot", "class-variance-authority", "clsx", "tailwind-merge"]
+      },
+      "component": {
+        "path": "components/ui/button.tsx",
+        "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"../../lib/utils\";\n\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground hover:bg-primary/90\",\n        destructive: \"bg-destructive text-destructive-foreground hover:bg-destructive/90\",\n        outline: \"border border-input bg-background hover:bg-accent hover:text-accent-foreground\",\n        secondary: \"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n        ghost: \"hover:bg-accent hover:text-accent-foreground\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n      },\n      size: {\n        default: \"h-10 px-4 py-2\",\n        sm: \"h-9 rounded-md px-3\",\n        lg: \"h-11 rounded-md px-8\",\n        icon: \"h-10 w-10\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n);\n\nexport interface ButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {\n  asChild?: boolean;\n}\n\nconst Button = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  ({ className, variant, size, asChild = false, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"button\";\n    return (\n      <Comp\n        className={cn(buttonVariants({ variant, size, className }))}\n        ref={ref}\n        {...props}\n      />\n    );\n  }\n);\nButton.displayName = \"Button\";\n\nexport { Button, buttonVariants };"
+      },
+      "utils": [
+        {
+          "path": "lib/utils.ts",
+          "content": "import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}",
+          "type": "utility"
+        }
+      ],
+      "examples": [
+        "<Button>Click me</Button>",
+        "<Button variant=\"destructive\">Delete</Button>",
+        "<Button variant=\"outline\" size=\"sm\">Small Button</Button>"
+      ]
+    },
+    "input": {
+      "metadata": {
+        "name": "Input",
+        "description": "A customizable input component with proper TypeScript props and forwarded refs",
+        "dependencies": [],
+        "files": [
+          {
+            "path": "components/ui/input.tsx",
+            "content": "import * as React from \"react\";\nimport { cn } from \"../../lib/utils\";\n\nexport interface InputProps\n  extends React.InputHTMLAttributes<HTMLInputElement> {}\n\nconst Input = React.forwardRef<HTMLInputElement, InputProps>(\n  ({ className, type, ...props }, ref) => {\n    return (\n      <input\n        type={type}\n        className={cn(\n          \"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n          className\n        )}\n        ref={ref}\n        {...props}\n      />\n    );\n  }\n);\nInput.displayName = \"Input\";\n\nexport { Input };",
+            "type": "component"
+          }
+        ],
+        "npmDependencies": ["clsx", "tailwind-merge"]
+      },
+      "component": {
+        "path": "components/ui/input.tsx",
+        "content": "import * as React from \"react\";\nimport { cn } from \"../../lib/utils\";\n\nexport interface InputProps\n  extends React.InputHTMLAttributes<HTMLInputElement> {}\n\nconst Input = React.forwardRef<HTMLInputElement, InputProps>(\n  ({ className, type, ...props }, ref) => {\n    return (\n      <input\n        type={type}\n        className={cn(\n          \"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n          className\n        )}\n        ref={ref}\n        {...props}\n      />\n    );\n  }\n);\nInput.displayName = \"Input\";\n\nexport { Input };"
+      },
+      "utils": [
+        {
+          "path": "lib/utils.ts",
+          "content": "import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}",
+          "type": "utility"
+        }
+      ],
+      "examples": [
+        "<Input placeholder=\"Enter your name\" />",
+        "<Input type=\"email\" placeholder=\"Enter your email\" />",
+        "<Input type=\"password\" placeholder=\"Enter your password\" />"
+      ]
+    },
+    "card": {
+      "metadata": {
+        "name": "Card",
+        "description": "A card component with header, content, and footer sections",
+        "dependencies": [],
+        "files": [
+          {
+            "path": "components/ui/card.tsx",
+            "content": "import * as React from \"react\";\nimport { cn } from \"../../lib/utils\";\n\nconst Card = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"rounded-lg border bg-card text-card-foreground shadow-sm\",\n      className\n    )}\n    {...props}\n  />\n));\nCard.displayName = \"Card\";\n\nconst CardHeader = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex flex-col space-y-1.5 p-6\", className)}\n    {...props}\n  />\n));\nCardHeader.displayName = \"CardHeader\";\n\nconst CardTitle = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h3\n    ref={ref}\n    className={cn(\n      \"text-2xl font-semibold leading-none tracking-tight\",\n      className\n    )}\n    {...props}\n  />\n));\nCardTitle.displayName = \"CardTitle\";\n\nconst CardDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p\n    ref={ref}\n    className={cn(\"text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n));\nCardDescription.displayName = \"CardDescription\";\n\nconst CardContent = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"p-6 pt-0\", className)} {...props} />\n));\nCardContent.displayName = \"CardContent\";\n\nconst CardFooter = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex items-center p-6 pt-0\", className)}\n    {...props}\n  />\n));\nCardFooter.displayName = \"CardFooter\";\n\nexport { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };",
+            "type": "component"
+          }
+        ],
+        "npmDependencies": ["clsx", "tailwind-merge"]
+      },
+      "component": {
+        "path": "components/ui/card.tsx",
+        "content": "import * as React from \"react\";\nimport { cn } from \"../../lib/utils\";\n\nconst Card = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"rounded-lg border bg-card text-card-foreground shadow-sm\",\n      className\n    )}\n    {...props}\n  />\n));\nCard.displayName = \"Card\";\n\nconst CardHeader = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex flex-col space-y-1.5 p-6\", className)}\n    {...props}\n  />\n));\nCardHeader.displayName = \"CardHeader\";\n\nconst CardTitle = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h3\n    ref={ref}\n    className={cn(\n      \"text-2xl font-semibold leading-none tracking-tight\",\n      className\n    )}\n    {...props}\n  />\n));\nCardTitle.displayName = \"CardTitle\";\n\nconst CardDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p\n    ref={ref}\n    className={cn(\"text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n));\nCardDescription.displayName = \"CardDescription\";\n\nconst CardContent = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"p-6 pt-0\", className)} {...props} />\n));\nCardContent.displayName = \"CardContent\";\n\nconst CardFooter = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex items-center p-6 pt-0\", className)}\n    {...props}\n  />\n));\nCardFooter.displayName = \"CardFooter\";\n\nexport { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };"
+      },
+      "utils": [
+        {
+          "path": "lib/utils.ts",
+          "content": "import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}",
+          "type": "utility"
+        }
+      ],
+      "examples": [
+        "<Card>\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card Description</CardDescription>\n  </CardHeader>\n  <CardContent>\n    <p>Card content goes here.</p>\n  </CardContent>\n  <CardFooter>\n    <Button>Action</Button>\n  </CardFooter>\n</Card>"
+      ]
+    },
+    "dialog": {
+      "metadata": {
+        "name": "Dialog",
+        "description": "A modal dialog component with overlay and content sections",
+        "dependencies": [],
+        "files": [
+          {
+            "path": "components/ui/dialog.tsx",
+            "content": "import * as React from \"react\";\nimport * as DialogPrimitive from \"@radix-ui/react-dialog\";\nimport { X } from \"lucide-react\";\nimport { cn } from \"../../lib/utils\";\n\nconst Dialog = DialogPrimitive.Root;\nconst DialogTrigger = DialogPrimitive.Trigger;\nconst DialogPortal = DialogPrimitive.Portal;\nconst DialogClose = DialogPrimitive.Close;\n\nconst DialogOverlay = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Overlay>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Overlay\n    ref={ref}\n    className={cn(\n      \"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\",\n      className\n    )}\n    {...props}\n  />\n));\nDialogOverlay.displayName = DialogPrimitive.Overlay.displayName;\n\nconst DialogContent = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>\n>(({ className, children, ...props }, ref) => (\n  <DialogPortal>\n    <DialogOverlay />\n    <DialogPrimitive.Content\n      ref={ref}\n      className={cn(\n        \"fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n      <DialogPrimitive.Close className=\"absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground\">\n        <X className=\"h-4 w-4\" />\n        <span className=\"sr-only\">Close</span>\n      </DialogPrimitive.Close>\n    </DialogPrimitive.Content>\n  </DialogPortal>\n));\nDialogContent.displayName = DialogPrimitive.Content.displayName;\n\nconst DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (\n  <div className={cn(\"flex flex-col space-y-1.5 text-center sm:text-left\", className)} {...props} />\n);\nDialogHeader.displayName = \"DialogHeader\";\n\nconst DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (\n  <div className={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)} {...props} />\n);\nDialogFooter.displayName = \"DialogFooter\";\n\nconst DialogTitle = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Title>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Title\n    ref={ref}\n    className={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n    {...props}\n  />\n));\nDialogTitle.displayName = DialogPrimitive.Title.displayName;\n\nconst DialogDescription = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Description>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Description\n    ref={ref}\n    className={cn(\"text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n));\nDialogDescription.displayName = DialogPrimitive.Description.displayName;\n\nexport {\n  Dialog,\n  DialogPortal,\n  DialogOverlay,\n  DialogClose,\n  DialogTrigger,\n  DialogContent,\n  DialogHeader,\n  DialogFooter,\n  DialogTitle,\n  DialogDescription,\n};",
+            "type": "component"
+          }
+        ],
+        "npmDependencies": ["@radix-ui/react-dialog", "lucide-react", "clsx", "tailwind-merge"]
+      },
+      "component": {
+        "path": "components/ui/dialog.tsx",
+        "content": "import * as React from \"react\";\nimport * as DialogPrimitive from \"@radix-ui/react-dialog\";\nimport { X } from \"lucide-react\";\nimport { cn } from \"../../lib/utils\";\n\nconst Dialog = DialogPrimitive.Root;\nconst DialogTrigger = DialogPrimitive.Trigger;\nconst DialogPortal = DialogPrimitive.Portal;\nconst DialogClose = DialogPrimitive.Close;\n\nconst DialogOverlay = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Overlay>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Overlay\n    ref={ref}\n    className={cn(\n      \"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\",\n      className\n    )}\n    {...props}\n  />\n));\nDialogOverlay.displayName = DialogPrimitive.Overlay.displayName;\n\nconst DialogContent = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>\n>(({ className, children, ...props }, ref) => (\n  <DialogPortal>\n    <DialogOverlay />\n    <DialogPrimitive.Content\n      ref={ref}\n      className={cn(\n        \"fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n      <DialogPrimitive.Close className=\"absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground\">\n        <X className=\"h-4 w-4\" />\n        <span className=\"sr-only\">Close</span>\n      </DialogPrimitive.Close>\n    </DialogPrimitive.Content>\n  </DialogPortal>\n));\nDialogContent.displayName = DialogPrimitive.Content.displayName;\n\nconst DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (\n  <div className={cn(\"flex flex-col space-y-1.5 text-center sm:text-left\", className)} {...props} />\n);\nDialogHeader.displayName = \"DialogHeader\";\n\nconst DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (\n  <div className={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)} {...props} />\n);\nDialogFooter.displayName = \"DialogFooter\";\n\nconst DialogTitle = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Title>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Title\n    ref={ref}\n    className={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n    {...props}\n  />\n));\nDialogTitle.displayName = DialogPrimitive.Title.displayName;\n\nconst DialogDescription = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Description>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Description\n    ref={ref}\n    className={cn(\"text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n));\nDialogDescription.displayName = DialogPrimitive.Description.displayName;\n\nexport {\n  Dialog,\n  DialogPortal,\n  DialogOverlay,\n  DialogClose,\n  DialogTrigger,\n  DialogContent,\n  DialogHeader,\n  DialogFooter,\n  DialogTitle,\n  DialogDescription,\n};"
+      },
+      "utils": [
+        {
+          "path": "lib/utils.ts",
+          "content": "import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}",
+          "type": "utility"
+        }
+      ],
+      "examples": [
+        "<Dialog>\n  <DialogTrigger>Open Dialog</DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Dialog Title</DialogTitle>\n      <DialogDescription>Dialog description goes here.</DialogDescription>\n    </DialogHeader>\n    <DialogFooter>\n      <Button>Save</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>"
+      ]
+    },
+    "badge": {
+      "metadata": {
+        "name": "Badge",
+        "description": "A badge component with variant support for displaying status or labels",
+        "dependencies": [],
+        "files": [
+          {
+            "path": "components/ui/badge.tsx",
+            "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"../../lib/utils\";\n\nconst badgeVariants = cva(\n  \"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2\",\n  {\n    variants: {\n      variant: {\n        default: \"border-transparent bg-primary text-primary-foreground hover:bg-primary/80\",\n        secondary: \"border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n        destructive: \"border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80\",\n        outline: \"text-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof badgeVariants> {}\n\nfunction Badge({ className, variant, ...props }: BadgeProps) {\n  return (\n    <div className={cn(badgeVariants({ variant }), className)} {...props} />\n  );\n}\n\nexport { Badge, badgeVariants };",
+            "type": "component"
+          }
+        ],
+        "npmDependencies": ["class-variance-authority", "clsx", "tailwind-merge"]
+      },
+      "component": {
+        "path": "components/ui/badge.tsx",
+        "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"../../lib/utils\";\n\nconst badgeVariants = cva(\n  \"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2\",\n  {\n    variants: {\n      variant: {\n        default: \"border-transparent bg-primary text-primary-foreground hover:bg-primary/80\",\n        secondary: \"border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n        destructive: \"border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80\",\n        outline: \"text-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof badgeVariants> {}\n\nfunction Badge({ className, variant, ...props }: BadgeProps) {\n  return (\n    <div className={cn(badgeVariants({ variant }), className)} {...props} />\n  );\n}\n\nexport { Badge, badgeVariants };"
+      },
+      "utils": [
+        {
+          "path": "lib/utils.ts",
+          "content": "import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}",
+          "type": "utility"
+        }
+      ],
+      "examples": [
+        "<Badge>Default</Badge>",
+        "<Badge variant=\"secondary\">Secondary</Badge>",
+        "<Badge variant=\"destructive\">Error</Badge>",
+        "<Badge variant=\"outline\">Outline</Badge>"
+      ]
+    },
+    "alert": {
+      "metadata": {
+        "name": "Alert",
+        "description": "An alert component with different severity levels for displaying important messages",
+        "dependencies": [],
+        "files": [
+          {
+            "path": "components/ui/alert.tsx",
+            "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"../../lib/utils\";\n\nconst alertVariants = cva(\n  \"relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-background text-foreground\",\n        destructive: \"border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nconst Alert = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>\n>(({ className, variant, ...props }, ref) => (\n  <div\n    ref={ref}\n    role=\"alert\"\n    className={cn(alertVariants({ variant }), className)}\n    {...props}\n  />\n));\nAlert.displayName = \"Alert\";\n\nconst AlertTitle = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h5\n    ref={ref}\n    className={cn(\"mb-1 font-medium leading-none tracking-tight\", className)}\n    {...props}\n  />\n));\nAlertTitle.displayName = \"AlertTitle\";\n\nconst AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"text-sm [&_p]:leading-relaxed\", className)}\n    {...props}\n  />\n));\nAlertDescription.displayName = \"AlertDescription\";\n\nexport { Alert, AlertTitle, AlertDescription };",
+            "type": "component"
+          }
+        ],
+        "npmDependencies": ["class-variance-authority", "clsx", "tailwind-merge"]
+      },
+      "component": {
+        "path": "components/ui/alert.tsx",
+        "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"../../lib/utils\";\n\nconst alertVariants = cva(\n  \"relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-background text-foreground\",\n        destructive: \"border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nconst Alert = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>\n>(({ className, variant, ...props }, ref) => (\n  <div\n    ref={ref}\n    role=\"alert\"\n    className={cn(alertVariants({ variant }), className)}\n    {...props}\n  />\n));\nAlert.displayName = \"Alert\";\n\nconst AlertTitle = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h5\n    ref={ref}\n    className={cn(\"mb-1 font-medium leading-none tracking-tight\", className)}\n    {...props}\n  />\n));\nAlertTitle.displayName = \"AlertTitle\";\n\nconst AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"text-sm [&_p]:leading-relaxed\", className)}\n    {...props}\n  />\n));\nAlertDescription.displayName = \"AlertDescription\";\n\nexport { Alert, AlertTitle, AlertDescription };"
+      },
+      "utils": [
+        {
+          "path": "lib/utils.ts",
+          "content": "import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}",
+          "type": "utility"
+        }
+      ],
+      "examples": [
+        "<Alert>\n  <AlertTitle>Info</AlertTitle>\n  <AlertDescription>This is an informational message.</AlertDescription>\n</Alert>",
+        "<Alert variant=\"destructive\">\n  <AlertTitle>Error</AlertTitle>\n  <AlertDescription>Something went wrong.</AlertDescription>\n</Alert>"
+      ]
+    },
+    "separator": {
+      "metadata": {
+        "name": "Separator",
+        "description": "A separator component for layout divisions with horizontal and vertical orientations",
+        "dependencies": [],
+        "files": [
+          {
+            "path": "components/ui/separator.tsx",
+            "content": "import * as React from \"react\";\nimport * as SeparatorPrimitive from \"@radix-ui/react-separator\";\nimport { cn } from \"../../lib/utils\";\n\nconst Separator = React.forwardRef<\n  React.ElementRef<typeof SeparatorPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>\n>(\n  (\n    { className, orientation = \"horizontal\", decorative = true, ...props },\n    ref\n  ) => (\n    <SeparatorPrimitive.Root\n      ref={ref}\n      decorative={decorative}\n      orientation={orientation}\n      className={cn(\n        \"shrink-0 bg-border\",\n        orientation === \"horizontal\" ? \"h-[1px] w-full\" : \"h-full w-[1px]\",\n        className\n      )}\n      {...props}\n    />\n  )\n);\nSeparator.displayName = SeparatorPrimitive.Root.displayName;\n\nexport { Separator };",
+            "type": "component"
+          }
+        ],
+        "npmDependencies": ["@radix-ui/react-separator", "clsx", "tailwind-merge"]
+      },
+      "component": {
+        "path": "components/ui/separator.tsx",
+        "content": "import * as React from \"react\";\nimport * as SeparatorPrimitive from \"@radix-ui/react-separator\";\nimport { cn } from \"../../lib/utils\";\n\nconst Separator = React.forwardRef<\n  React.ElementRef<typeof SeparatorPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>\n>(\n  (\n    { className, orientation = \"horizontal\", decorative = true, ...props },\n    ref\n  ) => (\n    <SeparatorPrimitive.Root\n      ref={ref}\n      decorative={decorative}\n      orientation={orientation}\n      className={cn(\n        \"shrink-0 bg-border\",\n        orientation === \"horizontal\" ? \"h-[1px] w-full\" : \"h-full w-[1px]\",\n        className\n      )}\n      {...props}\n    />\n  )\n);\nSeparator.displayName = SeparatorPrimitive.Root.displayName;\n\nexport { Separator };"
+      },
+      "utils": [
+        {
+          "path": "lib/utils.ts",
+          "content": "import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}",
+          "type": "utility"
+        }
+      ],
+      "examples": [
+        "<Separator />",
+        "<Separator orientation=\"vertical\" className=\"h-4\" />",
+        "<div className=\"flex items-center space-x-2\">\n  <span>Item 1</span>\n  <Separator orientation=\"vertical\" className=\"h-4\" />\n  <span>Item 2</span>\n</div>"
+      ]
+    }
+  },
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-20T00:00:00.000Z",
+  "utils": {
+    "cn": {
+      "path": "lib/utils.ts",
+      "content": "import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}",
+      "type": "utility",
+      "description": "Utility for merging class names with Tailwind CSS"
+    }
+  }
+}
